@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMA_COM - Nosy Varika</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h1>MINISTERE DE LA SANTE PUBLIQUE</h1>
+    <h2>TATITRA ISAM-BOLANA ATAON'NY MPANENTANA ARA-PAHASALAMANA</h2>
+    
+    <form action="/submit" method="POST">
+        
+        <fieldset class="form-section">
+            <legend>Tondro Toerana (Identification)</legend>
+            <div class="form-group">
+                <label for="date-selection">Volana sy taona (Mois et année) :</label>
+                <input type="month" id="date-selection" name="volana_sy_taona" required>
+            </div>
+            <div class="form-group">
+                <label for="csb-select">1. Choisir le CSB :</label>
+                <select id="csb-select" name="csb" required onchange="chargerFokontany()">
+                    <option value="">-- Sélectionnez un CSB --</option>
+                    <option value="csb_ambahy">CSB Ambahy</option>
+                    <option value="csb_andara">CSB Andara</option>
+                    <option value="csb_ampahomanitra">CSB Ampahomanitra</option>
+                    <option value="csb_androrangavola">CSB Androrangavola</option>
+                    <option value="csb_sahavato">CSB Sahavato</option>
+                    <option value="csb_tsararivotra">CSB Tsararivotra</option>
+                    <option value="csb_ambodiriana">CSB Ambodiriana</option>
+                    <option value="csb_andranomavo">CSB Andranomavo</option>
+                    <option value="csb_fanivelona">CSB Fanivelona</option>
+                    <option value="csb_fiadanana">CSB Fiadanana</option>
+                    <option value="csb_ambakobe">CSB Ambakobe</option>
+                    <option value="csb_mandroromody">CSB Mandroromody</option>
+                    <option value="csb_vohidroa">CSB Vohidroa</option>
+                    <option value="csb_vohilava">CSB Vohilava</option>
+                    <option value="csb_vohitrandriana">CSB Vohitrandriana</option>
+                    <option value="csb_ambalakondro">CSB Ambalakondro</option>
+                    <option value="csb_ambodilafa">CSB Ambodilafa</option>
+                    <option value="csb_ampasimbola">CSB Ampasimbola</option>
+                    <option value="csb_soavina">CSB Soavina</option>
+                    <option value="csb_ambodiara">CSB Ambodiara</option>
+                    <option value="csb_ambodivoahangy">CSB Ambodivoahangy</option>
+                    <option value="csb_ampasinambo">CSB Ampasinambo</option>
+                    <option value="csb_angodongodona">CSB Angodongodona</option>
+                    <option value="csb_anivorano">CSB Anivorano</option>
+                    <option value="csb_antanambao">CSB Antanambao</option>
+                    <option value="csb_befody">CSB Befody</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fokontany-select">2. Fokontany associé :</label>
+                <select id="fokontany-select" name="fokontany" required disabled>
+                    <option value="">-- Choisissez d'abord un CSB --</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+            <legend>Tabilao 5: FANDRAISANA AN-TANANA (PCIMEc)</legend>
+            <div class="table-responsive">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" class="col-indicator">Ny zaza noraisina an-tanana (PCIMEc)</th>
+                            <th colspan="2">&lt; 2 volana</th>
+                            <th colspan="2">2-11 volana</th>
+                            <th colspan="2">1-5 taona</th>
+                            <th colspan="2">6-13 taona</th>
+                        </tr>
+                        <tr>
+                            <th class="col-sex">L</th>
+                            <th class="col-sex">V</th>
+                            <th class="col-sex">L</th>
+                            <th class="col-sex">V</th>
+                            <th class="col-sex">L</th>
+                            <th class="col-sex">V</th>
+                            <th class="col-sex">L</th>
+                            <th class="col-sex">V</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Isan'ny zaza noraisina an-tanana tao amin'ny toby</td>
+                            <td><input type="number" name="t5_l1_inf2_l" min="0"></td>
+                            <td><input type="number" name="t5_l1_inf2_v" min="0"></td>
+                            <td><input type="number" name="t5_l1_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l1_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l1_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l1_1to5_v" min="0"></td>
+                            <td><input type="number" name="t5_l1_6to13_l" min="0"></td>
+                            <td><input type="number" name="t5_l1_6to13_v" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Isan'ny zaza marary Mafana hoditra:</td>
+                            <td><input type="number" name="t5_l2_inf2_l" min="0"></td>
+                            <td><input type="number" name="t5_l2_inf2_v" min="0"></td>
+                            <td><input type="number" name="t5_l2_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l2_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l2_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l2_1to5_v" min="0"></td>
+                            <td><input type="number" name="t5_l2_6to13_l" min="0"></td>
+                            <td><input type="number" name="t5_l2_6to13_v" min="0"></td>
+                        </tr>
+                        <tr class="sub-row">
+                            <td>• Mafana hoditra natao fitilina RDT</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l3_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l3_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l3_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l3_1to5_v" min="0"></td>
+                            <td><input type="number" name="t5_l3_6to13_l" min="0"></td>
+                            <td><input type="number" name="t5_l3_6to13_v" min="0"></td>
+                        </tr>
+                        <tr class="sub-row">
+                            <td>• Mafana hoditra RDT positiva</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l4_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l4_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l4_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l4_1to5_v" min="0"></td>
+                            <td><input type="number" name="t5_l4_6to13_l" min="0"></td>
+                            <td><input type="number" name="t5_l4_6to13_v" min="0"></td>
+                        </tr>
+                        <tr class="sub-row">
+                            <td>• RDT positiva nomena Asaq/ACT</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l5_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l5_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l5_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l5_1to5_v" min="0"></td>
+                            <td><input type="number" name="t5_l5_6to13_l" min="0"></td>
+                            <td><input type="number" name="t5_l5_6to13_v" min="0"></td>
+                        </tr>
+                        <tr class="sub-row">
+                            <td>• RDT positiva nomena Artesunate Fisisika</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l6_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l6_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l6_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l6_1to5_v" min="0"></td>
+                            <td><input type="number" name="t5_l6_6to13_l" min="0"></td>
+                            <td><input type="number" name="t5_l6_6to13_v" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Isan'ny zaza marary Pneumonia:</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l7_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l7_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l7_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l7_1to5_v" min="0"></td>
+                            <td><input type="number" name="t5_l7_6to13_l" min="0"></td>
+                            <td><input type="number" name="t5_l7_6to13_v" min="0"></td>
+                        </tr>
+                        <tr class="sub-row">
+                            <td>• Pneumonia nomena Amoxicilline</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l8_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l8_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l8_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l8_1to5_v" min="0"></td>
+                            <td><input type="number" name="t5_l8_6to13_l" min="0"></td>
+                            <td><input type="number" name="t5_l8_6to13_v" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Isan'ny zaza marary Kohaka na Sery</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l9_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l9_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l9_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l9_1to5_v" min="0"></td>
+                            <td><input type="number" name="t5_l9_6to13_l" min="0"></td>
+                            <td><input type="number" name="t5_l9_6to13_v" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Isan'ny zaza marary Fivalanana tsotra:</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l10_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l10_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l10_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l10_1to5_v" min="0"></td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                        </tr>
+                        <tr class="sub-row">
+                            <td>• Fivalanana tsotra nomena SRO sy Zinc</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l11_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l11_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l11_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l11_1to5_v" min="0"></td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                        </tr>
+                        <tr>
+                            <td>Isan'ny zaza marary Fivalanana misy loza manambana:</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l12_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l12_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l12_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l12_1to5_v" min="0"></td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                        </tr>
+                        <tr class="sub-row">
+                            <td>• Fivalanana misy loza manambana nomena SRO sy Zinc</td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td><input type="number" name="t5_l13_2to11_l" min="0"></td>
+                            <td><input type="number" name="t5_l13_2to11_v" min="0"></td>
+                            <td><input type="number" name="t5_l13_1to5_l" min="0"></td>
+                            <td><input type="number" name="t5_l13_1to5_v" min="0"></td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                        </tr>
+                        <tr>
+                            <td>Isan'ny zaza vao teraka an-trano nasiana Chlorhexidine</td>
+                            <td><input type="number" name="t5_l14_inf2_l" min="0"></td>
+                            <td><input type="number" name="t5_l14_inf2_v" min="0"></td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                            <td class="cell-blocked"></td><td class="cell-blocked"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+            <legend>FANDRAISANA AN-TANANA NY ZAZA 6-59 VOLANA ENY AMIN'NY CRENAM</legend>
+            <div class="table-responsive">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" style="width: 80px;"></th>
+                            <th rowspan="2">Totalin'ny zaza sitrana avy any amin'ny CRENAS noraisina an-tanana ao amin'ny CRENAM tavela amin'ny fiatombohan'ny volana</th>
+                            <th rowspan="2">Totalin'ny zaza vaovao CRENAM noraisina an-tanana tavela tamin'ny fiatombohan'ny volana</th>
+                            <th rowspan="2">Totalin'ny zaza sitrana avy any amin'ny CRENAS niditra CRENAM nandritra ny volana</th>
+                            <th rowspan="2">Totalin'ny zaza vaovao niditra CRENAM nandritra ny volana</th>
+                            <th colspan="6">Nivoaka nandritra ny volana</th>
+                        </tr>
+                        <tr>
+                            <th>Sitrana</th>
+                            <th>Tsy sitrana nandritra ny 90 andro</th>
+                            <th>Nitsoaka</th>
+                            <th>Maty</th>
+                            <th>Nafindra ho any amin'ny CRENAS</th>
+                            <th>Nafindra ho any amin'ny CRENAM hafa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="row-gender">Lahy</td>
+                            <td><input type="number" name="crenam_lahy_col1" min="0"></td>
+                            <td><input type="number" name="crenam_lahy_col2" min="0"></td>
+                            <td><input type="number" name="crenam_lahy_col3" min="0"></td>
+                            <td><input type="number" name="crenam_lahy_col4" min="0"></td>
+                            <td><input type="number" name="crenam_lahy_col5" min="0"></td>
+                            <td><input type="number" name="crenam_lahy_col6" min="0"></td>
+                            <td><input type="number" name="crenam_lahy_col7" min="0"></td>
+                            <td><input type="number" name="crenam_lahy_col8" min="0"></td>
+                            <td><input type="number" name="crenam_lahy_col9" min="0"></td>
+                            <td><input type="number" name="crenam_lahy_col10" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td class="row-gender">Vavy</td>
+                            <td><input type="number" name="crenam_vavy_col1" min="0"></td>
+                            <td><input type="number" name="crenam_vavy_col2" min="0"></td>
+                            <td><input type="number" name="crenam_vavy_col3" min="0"></td>
+                            <td><input type="number" name="crenam_vavy_col4" min="0"></td>
+                            <td><input type="number" name="crenam_vavy_col5" min="0"></td>
+                            <td><input type="number" name="crenam_vavy_col6" min="0"></td>
+                            <td><input type="number" name="crenam_vavy_col7" min="0"></td>
+                            <td><input type="number" name="crenam_vavy_col8" min="0"></td>
+                            <td><input type="number" name="crenam_vavy_col9" min="0"></td>
+                            <td><input type="number" name="crenam_vavy_col10" min="0"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+            <legend>Tabilao 9: FITANTANANA NY FANAFODY SY KOJAKOJA MOMBA NY FAHASALAMANA</legend>
+            <div class="table-responsive">
+                <table class="report-table fanafody-table">
+                    <thead>
+                        <tr>
+                            <th>Sokajy</th>
+                            <th>Karazany</th>
+                            <th>Tahiry niangana voalohan'ny volana (a)</th>
+                            <th>Isan'ny niditra nandritra ny volana (b)</th>
+                            <th>Isan'ny nivoaka nandritra ny volana (d)</th>
+                            <th>Isan'ireo simba, lany andro (e)</th>
+                            <th>Sisa tavela amin'ny faran'ny volana f = (a+b)-(d+e)</th>
+                            <th>Isan'ny andro tsy nisian'ny fanafody</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="7" class="group-header">Fandrindrana fiterahana</td>
+                            <td>COC / Microgynon*</td>
+                            <td><input type="number" name="t9_coc_a" min="0"></td>
+                            <td><input type="number" name="t9_coc_b" min="0"></td>
+                            <td><input type="number" name="t9_coc_d" min="0"></td>
+                            <td><input type="number" name="t9_coc_e" min="0"></td>
+                            <td><input type="number" name="t9_coc_f" min="0"></td>
+                            <td><input type="number" name="t9_coc_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>COP / Microlut*</td>
+                            <td><input type="number" name="t9_cop_a" min="0"></td>
+                            <td><input type="number" name="t9_cop_b" min="0"></td>
+                            <td><input type="number" name="t9_cop_d" min="0"></td>
+                            <td><input type="number" name="t9_cop_e" min="0"></td>
+                            <td><input type="number" name="t9_cop_f" min="0"></td>
+                            <td><input type="number" name="t9_cop_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Dépoprovéra</td>
+                            <td><input type="number" name="t9_depo_a" min="0"></td>
+                            <td><input type="number" name="t9_depo_b" min="0"></td>
+                            <td><input type="number" name="t9_depo_d" min="0"></td>
+                            <td><input type="number" name="t9_depo_e" min="0"></td>
+                            <td><input type="number" name="t9_depo_f" min="0"></td>
+                            <td><input type="number" name="t9_depo_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Sayana press</td>
+                            <td><input type="number" name="t9_sayana_a" min="0"></td>
+                            <td><input type="number" name="t9_sayana_b" min="0"></td>
+                            <td><input type="number" name="t9_sayana_d" min="0"></td>
+                            <td><input type="number" name="t9_sayana_e" min="0"></td>
+                            <td><input type="number" name="t9_sayana_f" min="0"></td>
+                            <td><input type="number" name="t9_sayana_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Kapaotin-dehilahy</td>
+                            <td><input type="number" name="t9_condom_a" min="0"></td>
+                            <td><input type="number" name="t9_condom_b" min="0"></td>
+                            <td><input type="number" name="t9_condom_d" min="0"></td>
+                            <td><input type="number" name="t9_condom_e" min="0"></td>
+                            <td><input type="number" name="t9_condom_f" min="0"></td>
+                            <td><input type="number" name="t9_condom_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Rojo (Vakana)</td>
+                            <td><input type="number" name="t9_rojo_a" min="0"></td>
+                            <td><input type="number" name="t9_rojo_b" min="0"></td>
+                            <td><input type="number" name="t9_rojo_d" min="0"></td>
+                            <td><input type="number" name="t9_rojo_e" min="0"></td>
+                            <td><input type="number" name="t9_rojo_f" min="0"></td>
+                            <td><input type="number" name="t9_rojo_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Test de grossesse</td>
+                            <td><input type="number" name="t9_pregtest_a" min="0"></td>
+                            <td><input type="number" name="t9_pregtest_b" min="0"></td>
+                            <td><input type="number" name="t9_pregtest_d" min="0"></td>
+                            <td><input type="number" name="t9_pregtest_e" min="0"></td>
+                            <td><input type="number" name="t9_pregtest_f" min="0"></td>
+                            <td><input type="number" name="t9_pregtest_days" min="0"></td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="4" class="group-header">Vohoka sy fiterahana ie-rendoza</td>
+                            <td>Misoprostol</td>
+                            <td><input type="number" name="t9_miso_a" min="0"></td>
+                            <td><input type="number" name="t9_miso_b" min="0"></td>
+                            <td><input type="number" name="t9_miso_d" min="0"></td>
+                            <td><input type="number" name="t9_miso_e" min="0"></td>
+                            <td><input type="number" name="t9_miso_f" min="0"></td>
+                            <td><input type="number" name="t9_miso_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Sulfadoxyne Pyrimethamine</td>
+                            <td><input type="number" name="t9_sp_a" min="0"></td>
+                            <td><input type="number" name="t9_sp_b" min="0"></td>
+                            <td><input type="number" name="t9_sp_d" min="0"></td>
+                            <td><input type="number" name="t9_sp_e" min="0"></td>
+                            <td><input type="number" name="t9_sp_f" min="0"></td>
+                            <td><input type="number" name="t9_sp_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Chlorhexidine</td>
+                            <td><input type="number" name="t9_chx_a" min="0"></td>
+                            <td><input type="number" name="t9_chx_b" min="0"></td>
+                            <td><input type="number" name="t9_chx_d" min="0"></td>
+                            <td><input type="number" name="t9_chx_e" min="0"></td>
+                            <td><input type="number" name="t9_chx_f" min="0"></td>
+                            <td><input type="number" name="t9_chx_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>FAF</td>
+                            <td><input type="number" name="t9_faf_a" min="0"></td>
+                            <td><input type="number" name="t9_faf_b" min="0"></td>
+                            <td><input type="number" name="t9_faf_d" min="0"></td>
+                            <td><input type="number" name="t9_faf_e" min="0"></td>
+                            <td><input type="number" name="t9_faf_f" min="0"></td>
+                            <td><input type="number" name="t9_faf_days" min="0"></td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="12" class="group-header">PCIMEc</td>
+                            <td>ASAQ zazakely (&gt; 2-11volana)</td>
+                            <td><input type="number" name="t9_asaq_inf1_a" min="0"></td>
+                            <td><input type="number" name="t9_asaq_inf1_b" min="0"></td>
+                            <td><input type="number" name="t9_asaq_inf1_d" min="0"></td>
+                            <td><input type="number" name="t9_asaq_inf1_e" min="0"></td>
+                            <td><input type="number" name="t9_asaq_inf1_f" min="0"></td>
+                            <td><input type="number" name="t9_asaq_inf1_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>ASAQ zaza (1-5 taona)</td>
+                            <td><input type="number" name="t9_asaq_1to5_a" min="0"></td>
+                            <td><input type="number" name="t9_asaq_1to5_b" min="0"></td>
+                            <td><input type="number" name="t9_asaq_1to5_d" min="0"></td>
+                            <td><input type="number" name="t9_asaq_1to5_e" min="0"></td>
+                            <td><input type="number" name="t9_asaq_1to5_f" min="0"></td>
+                            <td><input type="number" name="t9_asaq_1to5_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>ASAQ Ankizy (6-13 taona)</td>
+                            <td><input type="number" name="t9_asaq_6to13_a" min="0"></td>
+                            <td><input type="number" name="t9_asaq_6to13_b" min="0"></td>
+                            <td><input type="number" name="t9_asaq_6to13_d" min="0"></td>
+                            <td><input type="number" name="t9_asaq_6to13_e" min="0"></td>
+                            <td><input type="number" name="t9_asaq_6to13_f" min="0"></td>
+                            <td><input type="number" name="t9_asaq_6to13_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>RDT</td>
+                            <td><input type="number" name="t9_rdt_a" min="0"></td>
+                            <td><input type="number" name="t9_rdt_b" min="0"></td>
+                            <td><input type="number" name="t9_rdt_d" min="0"></td>
+                            <td><input type="number" name="t9_rdt_e" min="0"></td>
+                            <td><input type="number" name="t9_rdt_f" min="0"></td>
+                            <td><input type="number" name="t9_rdt_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Artesunate (Fisisika)</td>
+                            <td><input type="number" name="t9_art_a" min="0"></td>
+                            <td><input type="number" name="t9_art_b" min="0"></td>
+                            <td><input type="number" name="t9_art_d" min="0"></td>
+                            <td><input type="number" name="t9_art_e" min="0"></td>
+                            <td><input type="number" name="t9_art_f" min="0"></td>
+                            <td><input type="number" name="t9_art_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Lay misy odi-moka</td>
+                            <td><input type="number" name="t9_moust_a" min="0"></td>
+                            <td><input type="number" name="t9_moust_b" min="0"></td>
+                            <td><input type="number" name="t9_moust_d" min="0"></td>
+                            <td><input type="number" name="t9_moust_e" min="0"></td>
+                            <td><input type="number" name="t9_moust_f" min="0"></td>
+                            <td><input type="number" name="t9_moust_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Amoxiciline 250 mg</td>
+                            <td><input type="number" name="t9_amox_a" min="0"></td>
+                            <td><input type="number" name="t9_amox_b" min="0"></td>
+                            <td><input type="number" name="t9_amox_d" min="0"></td>
+                            <td><input type="number" name="t9_amox_e" min="0"></td>
+                            <td><input type="number" name="t9_amox_f" min="0"></td>
+                            <td><input type="number" name="t9_amox_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Paracétamol 500 mg pilina</td>
+                            <td><input type="number" name="t9_para500_a" min="0"></td>
+                            <td><input type="number" name="t9_para500_b" min="0"></td>
+                            <td><input type="number" name="t9_para500_d" min="0"></td>
+                            <td><input type="number" name="t9_para500_e" min="0"></td>
+                            <td><input type="number" name="t9_para500_f" min="0"></td>
+                            <td><input type="number" name="t9_para500_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Paracétamol 100 mg pilina</td>
+                            <td><input type="number" name="t9_para100_a" min="0"></td>
+                            <td><input type="number" name="t9_para100_b" min="0"></td>
+                            <td><input type="number" name="t9_para100_d" min="0"></td>
+                            <td><input type="number" name="t9_para100_e" min="0"></td>
+                            <td><input type="number" name="t9_para100_f" min="0"></td>
+                            <td><input type="number" name="t9_para100_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Zinc pilina 20 mg</td>
+                            <td><input type="number" name="t9_zinc_a" min="0"></td>
+                            <td><input type="number" name="t9_zinc_b" min="0"></td>
+                            <td><input type="number" name="t9_zinc_d" min="0"></td>
+                            <td><input type="number" name="t9_zinc_e" min="0"></td>
+                            <td><input type="number" name="t9_zinc_f" min="0"></td>
+                            <td><input type="number" name="t9_zinc_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td>SRO sachet</td>
+                            <td><input type="number" name="t9_sro_a" min="0"></td>
+                            <td><input type="number" name="t9_sro_b" min="0"></td>
+                            <td><input type="number" name="t9_sro_d" min="0"></td>
+                            <td><input type="number" name="t9_sro_e" min="0"></td>
+                            <td><input type="number" name="t9_sro_f" min="0"></td>
+                            <td><input type="number" name="t9_sro_days" min="0"></td>
+                        </tr>
+                        <tr class="custom-inserted-row">
+                            <td>ASAQ 14 taona sy mihoatra (14 ans et +)</td>
+                            <td><input type="number" name="t9_asaq14_a" min="0"></td>
+                            <td><input type="number" name="t9_asaq14_b" min="0"></td>
+                            <td><input type="number" name="t9_asaq14_d" min="0"></td>
+                            <td><input type="number" name="t9_asaq14_e" min="0"></td>
+                            <td><input type="number" name="t9_asaq14_f" min="0"></td>
+                            <td><input type="number" name="t9_asaq14_days" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td class="group-header">PCIMEc (Suite)</td>
+                            <td>Sur'Eau Pilina</td>
+                            <td><input type="number" name="t9_sureau_a" min="0"></td>
+                            <td><input type="number" name="t9_sureau_b" min="0"></td>
+                            <td><input type="number" name="t9_sureau_d" min="0"></td>
+                            <td><input type="number" name="t9_sureau_e" min="0"></td>
+                            <td><input type="number" name="t9_sureau_f" min="0"></td>
+                            <td><input type="number" name="t9_sureau_days" min="0"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="group-header">Fanjariantsakafo</td>
+                            <td>Plumpy Sup</td>
+                            <td><input type="number" name="t9_plumpy_a" min="0"></td>
+                            <td><input type="number" name="t9_plumpy_b" min="0"></td>
+                            <td><input type="number" name="t9_plumpy_d" min="0"></td>
+                            <td><input type="number" name="t9_plumpy_e" min="0"></td>
+                            <td><input type="number" name="t9_plumpy_f" min="0"></td>
+                            <td><input type="number" name="t9_plumpy_days" min="0"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+
+        <button type="submit" class="submit-btn">Hanamarina ary Handefa ny tatitra (Valider et Envoyer)</button>
+    </form>
+</div>
+<div class="form-section">
+    <legend>MONTANT DES INTRANTS LIVRÉS AUX PATIENTS À REMBOURSER PAR PIVOT AU NIVEAU COMMUNAUTAIRE</legend>
+    
+    <div class="invoice-header-info">
+        <p><strong>District:</strong> Nosy Varika</p>
+        <p><strong>Année:</strong> 2026</p>
+    </div>
+
+    <div class="table-responsive">
+        <table class="report-table invoice-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">KAOMININA</th>
+                    <th rowspan="2">Fokontany</th>
+                    <th rowspan="2">Nb Amox</th>
+                    <th rowspan="2">Nb para</th>
+                    <th rowspan="2">Nb SRO</th>
+                    <th rowspan="2">Nb Zinc</th>
+                    <th colspan="4">Valeur en Ariary</th>
+                    <th rowspan="2">TOTAL</th>
+                    <th rowspan="2">Marge bénéficiaire</th>
+                </tr>
+                <tr>
+                    <th>Amox (76)</th>
+                    <th>Para (50)</th>
+                    <th>SRO (487)</th>
+                    <th>Zinc (70)</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-rows-container">
+                </tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <td colspan="2"><strong>Montant total</strong></td>
+                    <td id="total-nb-amox">0</td>
+                    <td id="total-nb-para">0</td>
+                    <td id="total-nb-sro">0</td>
+                    <td id="total-nb-zinc">0</td>
+                    <td id="total-val-amox">0</td>
+                    <td id="total-val-para">0</td>
+                    <td id="total-val-sro">0</td>
+                    <td id="total-val-zinc">0</td>
+                    <td id="total-invoice-global">0</td>
+                    <td id="total-marge-global">0</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
